@@ -1,6 +1,6 @@
 # Desafio React
 
-## 🚀 Tecnologias
+## :dart: Tecnologias
 
 - React.js
 - Next.js
