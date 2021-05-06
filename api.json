@@ -1,0 +1,90 @@
+{
+  "products": [
+    {
+      "name": "danone",
+      "price": "2.99",
+      "category": "Iogurte",
+      "id": 2
+    },
+    {
+      "name": "guygyug",
+      "price": "R$ 100,90",
+      "category": "Leite",
+      "id": 3
+    },
+    {
+      "name": "danone",
+      "price": "R$ 2,99",
+      "category": "Iogurte",
+      "id": 4
+    },
+    {
+      "name": "danone",
+      "price": "R$ 2,99",
+      "category": "Leite",
+      "id": 5
+    },
+    {
+      "name": "danone",
+      "price": "R$ 2,99",
+      "category": "Iogurte",
+      "id": 6
+    },
+    {
+      "name": "danone",
+      "price": "R$ 15,90",
+      "category": "Leite",
+      "id": 7
+    },
+    {
+      "name": "danone",
+      "price": "R$ 2,99",
+      "category": "Leite",
+      "id": 8
+    },
+    {
+      "name": "danone",
+      "price": "R$ 2,99",
+      "category": "Doce",
+      "id": 9
+    },
+    {
+      "name": "teste do lago",
+      "price": "R$ 2,99",
+      "category": "Doce",
+      "id": 10
+    },
+    {
+      "name": "danone",
+      "price": "R$ 100,00",
+      "category": "Leite",
+      "id": 11
+    },
+    {
+      "name": "teste do lago",
+      "price": "R$ 2,99",
+      "category": "Leite",
+      "id": 12
+    },
+    {
+      "name": "teste do lago",
+      "price": "R$ 100,00",
+      "category": "Leite",
+      "id": 13
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Doce"
+    },
+    {
+      "id": 2,
+      "name": "Leite"
+    },
+    {
+      "id": 3,
+      "name": "Iogurte"
+    }
+  ]
+}
