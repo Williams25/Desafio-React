@@ -14,14 +14,20 @@
 
 ## 🔥 Instalação e execução
 
-- Faça um clone desse repositório utilizando o camando `https://github.com/Williams25/Desafio-React.git`
+- Faça um clone desse repositório utilizando o camando `https://github.cosm/Williams25/Desafio-React.git`
 - Entre na pasta do projeto `cd Desafio-React` e logo após `code .`
 - Rode `yarn` para instalar as dependências
-- Rode `yarn dev` para iniciar o projeto
+- Rode `yarn dev` para iniciar o front-end
 - Rode `yarn server` para iniciar o back-end
 
 ## :rocket: Rotas do back-end
 
-#### `/products` Metodos (`GET`, `POST`, `PUT`, `DELETE`)
+- `/products` Métodos (`GET`, `POST`, `PUT`, `DELETE`)
 
-#### `/categories` Metodos (`GET`)
+- `/categories` Métodos (`GET`)
+
+## :computer: Layout
+
+<p align="center">
+  <img src="./public/home.svg">
+</p>
