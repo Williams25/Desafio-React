@@ -8,7 +8,9 @@ interface FormProps {
   _name?: string;
   _price?: string;
   _category?: string;
-  children: ReactNode;
+  _code?: number;
+  children?: ReactNode;
+  activeAndDisabledModal?: () => void;
 }
 
 export const Form = ({
@@ -16,12 +18,20 @@ export const Form = ({
   _id,
   _name,
   _price,
+  _code,
+  activeAndDisabledModal,
   children,
 }: FormProps) => {
   const { categories } = useContext(CategoryContext);
-  const { handleToSaveProduct } = useContext(ProductContext);
+  const {
+    handleToSaveProduct,
+    productExists,
+    handleToUpdateProduct,
+    productsList,
+  } = useContext(ProductContext);
 
   const [id, setId] = useState<number>(_id || undefined);
+  const [code, setCode] = useState<string>(String(_code) || "");
   const [name, setName] = useState<string>(_name || "");
   const [price, setPrice] = useState<string>(_price || "");
   const [category, setCategory] = useState<string>(_category || "");
@@ -38,22 +48,42 @@ export const Form = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    productExists({ collunm: "code", value: code });
 
-    if (
-      name.trim().length < 1 ||
-      price.trim().length < 1 ||
-      category.trim().length < 1 ||
-      category === "Selecione uma categoria"
-    ) {
-      setMessage("Preencha os campos corretamente!");
+    const list = productsList.filter((p) => p.code == Number(code));
+
+    if (!id && list.length === 0) {
+      handleToSaveProduct({
+        name,
+        price,
+        category,
+        code:Number(code),
+      });
+    } else if (id && list.length === 0) {
+      handleToUpdateProduct({
+        name,
+        price,
+        category,
+        code:Number(code),
+        id,
+      });
+    } else if (list[0].code === Number(code) && list[0].id === id) {
+      handleToUpdateProduct({
+        name,
+        price,
+        category,
+        code: Number(code),
+        id,
+      });
+    } else {
+      setMessage("Código do SKU já está cadastrado");
       return;
     }
-
-    handleToSaveProduct({ name, price, category });
     setLoading(true);
     clearInput();
     setTimeout(() => {
       setLoading(false);
+      activeAndDisabledModal();
     }, 3000);
   };
 
@@ -74,12 +104,24 @@ export const Form = ({
               onChange={(e) => setId(Number(e.target.value))}
               hidden
             />
+            <label htmlFor="code">
+              SKU
+              <input
+                type="number"
+                id="code"
+                value={code}
+                required
+                onChange={(e) => setCode(e.target.value)}
+              />
+            </label>
+
             <label htmlFor="name">
               Nome
               <input
                 type="text"
                 id="name"
                 value={name}
+                required
                 onChange={(e) => setName(e.target.value)}
               />
             </label>
@@ -90,6 +132,7 @@ export const Form = ({
                 type="text"
                 id="price"
                 value={price}
+                required
                 onChange={(e) => setPrice(e.target.value)}
               />
             </label>
@@ -100,6 +143,7 @@ export const Form = ({
                 name="category"
                 id="category"
                 value={category}
+                required
                 onChange={(e) => setCategory(e.target.value)}
               >
                 <option value="Selecione uma categoria">
