@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FormContent = styled.form`
   display: flex;
   flex-direction: column;
-  height: 50vh;
+  height: auto;
   label {
     width: 100%;
     display: flex;
@@ -16,7 +16,7 @@ export const FormContent = styled.form`
   }
   input,
   select {
-    width: 100%;
+    width: 28rem;
     margin-top: 0.3rem;
     padding: 0.4rem;
     padding-left: 0.6rem;
@@ -37,7 +37,8 @@ export const FormContent = styled.form`
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     transition: border 0.2s;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       border: 2px solid #cea2fd;
     }
   }
@@ -62,7 +63,7 @@ export const FormContent = styled.form`
   span {
     margin: 1rem;
     font-size: 1rem;
-    color: #FA4224;
+    color: #fa4224;
     font-family: Inter, sans-serif;
   }
 `;
