@@ -1,76 +1,39 @@
 {
   "products": [
     {
-      "name": "danone",
-      "price": "2.99",
+      "name": "Danone",
+      "price": "R$ 2,99",
       "category": "Iogurte",
+      "code": 3548,
+      "id": 1
+    },
+    {
+      "name": "Leite Mococa",
+      "price": "R$ 3,99",
+      "category": "Leite",
+      "code": 13154,
       "id": 2
     },
     {
-      "name": "guygyug",
-      "price": "R$ 100,90",
-      "category": "Leite",
+      "name": "Leite Moça",
+      "price": "R$ 6,80",
+      "category": "Doce",
+      "code": 6548,
       "id": 3
     },
     {
-      "name": "danone",
-      "price": "R$ 2,99",
+      "name": "Datene",
+      "price": "R$ 4,90",
       "category": "Iogurte",
+      "code": 9848,
       "id": 4
     },
     {
-      "name": "danone",
-      "price": "R$ 2,99",
-      "category": "Leite",
+      "name": "Pão doce",
+      "price": "R$ 7,99",
+      "category": "Doce",
+      "code": 3254,
       "id": 5
-    },
-    {
-      "name": "danone",
-      "price": "R$ 2,99",
-      "category": "Iogurte",
-      "id": 6
-    },
-    {
-      "name": "danone",
-      "price": "R$ 15,90",
-      "category": "Leite",
-      "id": 7
-    },
-    {
-      "name": "danone",
-      "price": "R$ 2,99",
-      "category": "Leite",
-      "id": 8
-    },
-    {
-      "name": "danone",
-      "price": "R$ 2,99",
-      "category": "Doce",
-      "id": 9
-    },
-    {
-      "name": "teste do lago",
-      "price": "R$ 2,99",
-      "category": "Doce",
-      "id": 10
-    },
-    {
-      "name": "danone",
-      "price": "R$ 100,00",
-      "category": "Leite",
-      "id": 11
-    },
-    {
-      "name": "teste do lago",
-      "price": "R$ 2,99",
-      "category": "Leite",
-      "id": 12
-    },
-    {
-      "name": "teste do lago",
-      "price": "R$ 100,00",
-      "category": "Leite",
-      "id": 13
     }
   ],
   "categories": [
