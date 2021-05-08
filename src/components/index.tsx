@@ -1,5 +1,7 @@
 export { Form } from "./Form";
-export { Modal } from "./Modal";
 export { Loading } from "./Loading";
 export { Header } from "./Header";
-export { ModalForm } from "./ModalForm";
+export { ModalDelete } from "./ModalDelete";
+export { ModalFormUpdate } from "./ModalFormUpdate";
+export { ModalFormCreate } from "./ModalFormCreate";
+export { ModalViewProduct } from "./ModalViewProduct";
