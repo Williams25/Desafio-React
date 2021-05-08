@@ -5,7 +5,6 @@ export const Loading = () => {
   return (
     <Player
       autoplay
-      loop
       style={{ height: "100%", width: 200 }}
       src={loadingAnimation}
     />
