@@ -8,7 +8,7 @@ interface ModalFormProps {
   children?: ReactNode;
   isModalActive: boolean;
   data?: {
-    id?: string;
+    id?: number;
     code?: string;
     name?: string;
     price?: string;
@@ -37,17 +37,17 @@ export const ModalFormUpdate = ({
             </IconButton>
             <div className="wrapper">
               <Form
-                _category={data?.category}
-                _id={Number(data?.id)}
-                _name={data?.name}
-                _price={data?.price}
-                _code={Number(data?.code)}
+                data={{
+                  category: data.category,
+                  code: Number(data.code),
+                  id: data.id,
+                  name: data.name,
+                  price: data.price,
+                }}
                 activeAndDisabledModal={() => {
                   activeAndDisabledModal();
                 }}
-              >
-              
-              </Form>
+              ></Form>
             </div>
           </div>
         </ContainerModal>
