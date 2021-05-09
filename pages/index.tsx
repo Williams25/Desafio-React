@@ -160,7 +160,7 @@ const DataGridTable = () => {
           <ModalFormCreate
             icon={() => (
               <CreateNewFolder
-                color="primary"
+                color="error"
                 fontSize="default"
                 style={{
                   margin: "1px",
