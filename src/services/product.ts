@@ -15,10 +15,7 @@ export default {
   create: async ({ name, price, category, code }: ProductSave) => {
     return await http.post("/products", {
       name,
-      price: Intl.NumberFormat("pt-br", {
-        style: "currency",
-        currency: "BRL",
-      }).format(Number(price)),
+      price,
       category,
       code,
     });
