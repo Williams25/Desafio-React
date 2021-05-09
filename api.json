@@ -1,15 +1,8 @@
 {
   "products": [
     {
-      "name": "Danone",
-      "price": "R$ 2,99",
-      "category": "Iogurte",
-      "code": 3548,
-      "id": 1
-    },
-    {
       "name": "Leite Mococa",
-      "price": "R$ 3,99",
+      "price": "R$ 3,98",
       "category": "Leite",
       "code": 13154,
       "id": 2
@@ -22,7 +15,7 @@
       "id": 3
     },
     {
-      "name": "Datene",
+      "name": "Danete",
       "price": "R$ 4,90",
       "category": "Iogurte",
       "code": 9848,
@@ -34,6 +27,13 @@
       "category": "Doce",
       "code": 3254,
       "id": 5
+    },
+    {
+      "name": "m&m",
+      "price": "R$ 2,99",
+      "category": "Doce",
+      "code": 5553121,
+      "id": 6
     }
   ],
   "categories": [
