@@ -2,26 +2,24 @@ import { useContext, useState, ReactNode } from "react";
 import { CategoryContext, ProductContext } from "../../contexts";
 import { FormContent } from "./styled";
 import { Loading, Header } from "../index";
+import { useForm } from "react-hook-form";
+import { formatMaskCoinBR } from "../../masks";
 
 interface FormProps {
-  _id?: number;
-  _name?: string;
-  _price?: string;
-  _category?: string;
-  _code?: number;
+  data?: Inputs;
   children?: ReactNode;
   activeAndDisabledModal?: () => void;
 }
 
-export const Form = ({
-  _category,
-  _id,
-  _name,
-  _price,
-  _code,
-  activeAndDisabledModal,
-  children,
-}: FormProps) => {
+interface Inputs {
+  id?: number;
+  name?: string;
+  price?: string;
+  category?: string;
+  code?: number;
+}
+
+export const Form = ({ data, activeAndDisabledModal, children }: FormProps) => {
   const { categories } = useContext(CategoryContext);
   const {
     handleToSaveProduct,
@@ -30,50 +28,57 @@ export const Form = ({
     productsList,
   } = useContext(ProductContext);
 
-  const [id, setId] = useState<number>(_id || undefined);
-  const [code, setCode] = useState<string>(String(_code) || "");
-  const [name, setName] = useState<string>(_name || "");
-  const [price, setPrice] = useState<string>(_price || "");
-  const [category, setCategory] = useState<string>(_category || "");
+  const [id, setId] = useState<number>(data?.id || undefined);
+  const [code, setCode] = useState<string>(String(data?.code) || "");
+  const [name, setName] = useState<string>(data?.name || "");
+  const [price, setPrice] = useState<string>(data?.price || "");
+  const [category, setCategory] = useState<string>(data?.category || "");
   const [message, setMessage] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Inputs>();
+
   const clearInput = () => {
     setId(undefined);
+    setCode("");
     setName("");
     setPrice("");
     setCategory("");
     setMessage("");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmitForm = (data: Inputs) => {
+    console.log("data ", data);
     productExists({ collunm: "code", value: code });
 
-    const list = productsList.filter((p) => p.code == Number(code));
+    const list = productsList.filter((p) => p.code == Number(data.code));
 
     if (!id && list.length === 0) {
       handleToSaveProduct({
-        name,
-        price,
-        category,
-        code:Number(code),
+        name: data.name,
+        price: price,
+        category: data.category,
+        code: Number(data.code),
       });
     } else if (id && list.length === 0) {
       handleToUpdateProduct({
-        name,
-        price,
-        category,
-        code:Number(code),
-        id,
+        name: data.name,
+        price: price,
+        category: data.category,
+        code: Number(data.code),
+        id: data.id,
       });
     } else if (list[0].code === Number(code) && list[0].id === id) {
       handleToUpdateProduct({
-        name,
-        price,
-        category,
-        code: Number(code),
-        id,
+        name: data.name,
+        price: price,
+        category: data.category,
+        code: Number(data.code),
+        id: data.id,
       });
     } else {
       setMessage("Código do SKU já está cadastrado");
@@ -97,21 +102,14 @@ export const Form = ({
             {children}
             <h1>{!id ? "Cadastrar produto" : "Alterar produto"}</h1>
           </Header>
-          <FormContent method="post" onSubmit={handleSubmit}>
-            <input
-              type="number"
-              value={id}
-              onChange={(e) => setId(Number(e.target.value))}
-              hidden
-            />
+          <FormContent method="post" onSubmit={handleSubmit(handleSubmitForm)}>
+            <input type="number" defaultValue={id} {...register("id")} hidden />
             <label htmlFor="code">
               SKU
               <input
                 type="number"
-                id="code"
-                value={code}
-                required
-                onChange={(e) => setCode(e.target.value)}
+                defaultValue={code}
+                {...register("code", { required: true })}
               />
             </label>
 
@@ -120,9 +118,8 @@ export const Form = ({
               <input
                 type="text"
                 id="name"
-                value={name}
-                required
-                onChange={(e) => setName(e.target.value)}
+                defaultValue={name}
+                {...register("name", { required: true })}
               />
             </label>
 
@@ -130,10 +127,9 @@ export const Form = ({
               Preço
               <input
                 type="text"
-                id="price"
-                value={price}
-                required
+                value={price == "R$ NaN" ? "R$ 00,00" : price}
                 onChange={(e) => setPrice(e.target.value)}
+                onKeyUp={(e) => setPrice(formatMaskCoinBR(e))}
               />
             </label>
 
@@ -142,9 +138,8 @@ export const Form = ({
               <select
                 name="category"
                 id="category"
-                value={category}
-                required
-                onChange={(e) => setCategory(e.target.value)}
+                defaultValue={category}
+                {...register("category", { required: true })}
               >
                 <option value="Selecione uma categoria">
                   Selecione uma categoria
