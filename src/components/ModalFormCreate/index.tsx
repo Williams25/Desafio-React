@@ -6,20 +6,10 @@ import { CategoryProvider } from "../../contexts";
 
 interface ModalProps {
   children?: ReactNode;
-  data?: {
-    id?: string;
-    code?: string;
-    name?: string;
-    price?: string;
-    category?: string;
-  };
   icon: () => JSX.Element;
 }
 
-export const ModalFormCreate = ({
-  data,
-  icon,
-}: ModalProps) => {
+export const ModalFormCreate = ({ icon }: ModalProps) => {
   const [isModalActive, setIsModalActive] = useState<boolean>(false);
   const activeAndDisabledModal = () => setIsModalActive(!isModalActive);
 
@@ -38,11 +28,6 @@ export const ModalFormCreate = ({
 
             <div className="wrapper">
               <Form
-                _id={Number(data?.id)}
-                _code={Number(data?.code)}
-                _name={data?.name}
-                _price={data?.price}
-                _category={data?.category}
                 activeAndDisabledModal={() => {
                   activeAndDisabledModal();
                 }}
@@ -51,14 +36,16 @@ export const ModalFormCreate = ({
           </div>
         </ContainerModal>
       )}
-      <IconButton
-        size="small"
+      <Button
+        variant="contained"
+        color="primary"
         onClick={() => {
           activeAndDisabledModal();
         }}
       >
+        Cadastrar produto
         {icon()}
-      </IconButton>
+      </Button>
     </CategoryProvider>
   );
 };
